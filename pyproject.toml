@@ -5,7 +5,7 @@ description = "Computational physics library for density functional theory simul
 readme = "README.md"
 requires-python = ">=3.10"
 license = { text = "MIT" }
-authors = [{ name = "basant", email = "acharya" }]
+authors = [{ name = "basant", email = "basantacharya.physics@gmail.com" }]
 keywords = ["dft", "density functional theory", "computational physics", "materials science"]
 classifiers = [
   "Programming Language :: Python :: 3",
@@ -21,6 +21,39 @@ optional-dependencies = { dev = ["pytest>=8.0", "black", "ruff"], docs = ["sphin
 [project.urls]
 "Homepage" = "https://github.com/yourusername/dftlab"
 "Documentation" = "https://github.com/yourusername/dftlab#readme"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["dftlab*"]
+exclude = ["tests", "docs", "examples", "notebooks"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py", "*_test.py"]
+python_classes = ["Test*"]
+python_functions = ["test_*"]
+addopts = "-v --strict-markers --tb=short"
+markers = [
+    "slow: marks tests as slow (deselect with '-m \"not slow\"')",
+    "integration: marks tests as integration tests",
+]
+
+[tool.coverage.run]
+source = ["dftlab"]
+omit = [
+    "*/tests/*",
+    "*/__init__.py",
+]
+
+[tool.coverage.report]
+exclude_lines = [
+    "pragma: no cover",
+    "def __repr__",
+    "raise AssertionError",
+    "raise NotImplementedError",
+    "if __name__ == .__main__.:",
+    "if TYPE_CHECKING:",
+]
 
 [build-system]
 requires = ["setuptools>=61.0", "wheel"]
