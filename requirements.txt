@@ -1,0 +1,7 @@
+# Core runtime dependencies
+numpy>=1.25
+scipy>=1.12
+
+# Documentation build dependencies
+sphinx>=8.0
+sphinx-rtd-theme>=2.0.0
